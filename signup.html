@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | ScholarSwap</title>
+  <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    :root {
+      --blue: #2563eb;
+      --blue-g: #3b82f6;
+      --blue-light: #eff6ff;
+      --blue-xlight: #dbeafe;
+      --gold: #b45309;
+      --red: #dc2626;
+      --green: #059669;
+      --indigo: #4f46e5;
+      --indigo-g: #6366f1;
+      --indigo-light: #eef2ff;
+      --indigo-xlight: #e0e7ff;
+      --amber-xlight: #fef3c7;
+      --green-xlight: #dcfce7;
+      --surface: #ffffff;
+      --page-bg: #f4f7fe;
+      --section-alt: #eef2fc;
+      --text: #0f172a;
+      --text2: #475569;
+      --text3: #94a3b8;
+      --indigo: #4f46e5;
+      --amber: #f59e0b;
+      --coral: #f05252;
+      --border: rgba(15, 23, 42, .10);
+      --shadow-sm: 0 1px 4px rgba(15, 23, 42, .06);
+      --shadow-md: 0 4px 16px rgba(15, 23, 42, .08);
+      --shadow-lg: 0 20px 48px rgba(15, 23, 42, .12);
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      color: var(--text);
+      min-height: 100%;
+      background: var(--page-bg);
+      overflow-x: hidden;
+    }
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(15, 23, 42, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(15, 23, 42, .025) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+
+    .orb1 {
+      width: 580px;
+      height: 480px;
+      top: -140px;
+      left: -100px;
+      background: radial-gradient(circle, rgba(37, 99, 235, .09) 0%, transparent 65%);
+      filter: blur(60px);
+    }
+
+    .orb2 {
+      width: 400px;
+      height: 400px;
+      bottom: -100px;
+      right: -60px;
+      background: radial-gradient(circle, rgba(99, 102, 241, .07) 0%, transparent 65%);
+      filter: blur(55px);
+      animation-delay: -7s;
+    }
+
+    .orb3 {
+      width: 240px;
+      height: 240px;
+      top: 40%;
+      right: 16%;
+      background: radial-gradient(circle, rgba(180, 83, 9, .05) 0%, transparent 65%);
+      filter: blur(48px);
+      animation-delay: -12s;
+    }
+
+    @keyframes drift {
+      from {
+        transform: translate(0, 0) scale(1);
+      }
+
+      to {
+        transform: translate(22px, 14px) scale(1.05);
+      }
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 510px;
+    }
+
+    @media(max-width:1020px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .left {
+        display: none !important;
+      }
+    }
+
+    /* LEFT PANEL */
+    .left {
+      position: relative;
+      overflow: hidden;
+      padding: 52px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: url('assets/img/login-bg.jpg') center/cover no-repeat;
+    }
+
+    .left::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: var(--page-bg);
+      opacity: .9;
+    }
+
+    .left>* {
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 48px;
+      animation: slideDown .7s ease both;
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #fff;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .logo-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 11px;
+    }
+
+    .logo-text {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #000000;
+    }
+
+    .logo-text em {
+      color: #fbbf24;
+      font-style: normal;
+    }
+
+    .left-hero {
+      animation: slideLeft .7s .1s ease both;
+    }
+
+    .left-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--indigo-g);
+      background: var(--indigo-xlight);
+      border: 1px solid rgba(99, 102, 241, .22);
+      border-radius: 99px;
+      padding: 5px 14px;
+      margin-bottom: 18px;
+    }
+
+    .left-h1 {
+      font-size: 2.9rem;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .left-h1 span {
+      background: linear-gradient(135deg, var(--indigo) 0%, var(--coral) 50%, var(--amber) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .left-sub {
+      font-size: .95rem;
+      color: var(--text2);
+      line-height: 1.72;
+      max-width: 420px;
+    }
+
+    .perks {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+      animation: slideLeft .7s .25s ease both;
+    }
+
+    .perk {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid rgba(15, 23, 42, .08);
+      box-shadow: var(--shadow-sm);
+      transition: all .2s;
+      cursor: default;
+    }
+
+    .perk:hover {
+      transform: translateX(6px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(37, 99, 235, .15);
+    }
+
+    .perk-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .88rem;
+    }
+
+    .pi-b {
+      background: var(--blue-xlight);
+      color: var(--blue);
+    }
+
+    .pi-g {
+      background: var(--green-xlight);
+      color: var(--green);
+    }
+
+    .pi-a {
+      background: var(--amber-xlight);
+      color: var(--gold);
+    }
+
+    .pi-i {
+      background: rgba(165, 180, 252, .12);
+      color: #a5b4fc;
+    }
+
+    .perk-text {
+      font-size: .87rem;
+      color: var(--text2);
+    }
+
+    .perk-text strong {
+      display: block;
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1px;
+    }
+
+    /* RIGHT PANEL */
+    .right {
+      background: #ffffff;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 28px 32px;
+      border-left: 1px solid var(--border);
+      box-shadow: -8px 0 40px rgba(15, 23, 42, .06);
+      overflow-y: auto;
+      min-height: 100vh;
+    }
+
+    .form-wrap {
+      width: 100%;
+      max-width: 460px;
+      padding: 14px 0 36px;
+    }
+
+    .mobile-logo {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    @media(max-width:1020px) {
+      .mobile-logo {
+        display: flex;
+      }
+    }
+
+    /* STEPS */
+    .steps {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 28px;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
+    .step-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .step-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      font-weight: 700;
+      border: 2px solid var(--border);
+      background: #f8fafc;
+      color: var(--text3);
+      transition: all .3s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-circle.done {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+    }
+
+    .step-circle.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, .14);
+    }
+
+    .step-label {
+      font-size: .64rem;
+      color: var(--text3);
+      margin-top: 4px;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .step-label.active {
+      color: var(--blue);
+    }
+
+    .step-label.done {
+      color: var(--green);
+    }
+
+    .step-line {
+      flex: 1;
+      height: 2px;
+      background: rgba(15, 23, 42, .10);
+      transition: background .3s;
+      margin: 0 4px;
+      margin-bottom: 20px;
+    }
+
+    .step-line.done {
+      background: var(--green);
+    }
+
+    /* STEP HEAD */
+    .step-head {
+      margin-bottom: 22px;
+    }
+
+    .step-head h2 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .step-head p {
+      font-size: .82rem;
+      color: var(--text2);
+    }
+
+    /* ROLE TOGGLE */
+    .role-toggle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .role-card {
+      padding: 16px 14px;
+      border-radius: 13px;
+      cursor: pointer;
+      text-align: center;
+      background: #f8fafc;
+      border: 2px solid var(--border);
+      transition: all .2s;
+    }
+
+    .role-card:hover {
+      border-color: rgba(37, 99, 235, .35);
+      background: var(--blue-light);
+    }
+
+    .role-card.selected {
+      border-color: var(--blue);
+      background: var(--blue-xlight);
+    }
+
+    .role-card input {
+      display: none;
+    }
+
+    .role-icon {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+    }
+
+    .role-card h4 {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .role-card p {
+      font-size: .72rem;
+      color: var(--text3);
+      line-height: 1.4;
+    }
+
+    .role-card.selected h4 {
+      color: var(--blue);
+    }
+
+    /* GRID */
+    .g2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .g1 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    @media(max-width:500px) {
+      .g2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* FIELDS */
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .field.full {
+      grid-column: 1/-1;
+    }
+
+    label {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--text2);
+    }
+
+    .req {
+      color: var(--red);
+      margin-left: 2px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="password"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 13px;
+      background: #f8fafc;
+      border: 1.5px solid rgba(15, 23, 42, .12);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: .875rem;
+      outline: none;
+      transition: border-color .18s, background .18s, box-shadow .18s;
+      -webkit-appearance: none;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--text3);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--blue);
+      background: var(--blue-light);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, .10);
+    }
+
+    input.err,
+    select.err,
+    textarea.err {
+      border-color: rgba(220, 38, 38, .45) !important;
+      background: rgba(220, 38, 38, .04) !important;
+    }
+
+    input.ok {
+      border-color: rgba(5, 150, 105, .45) !important;
+    }
+
+    select option {
+      background: #ffffff;
+      color: var(--text);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 78px;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      opacity: .5;
+      cursor: pointer;
+    }
+
+    /* PASSWORD EYE */
+    .pw-wrap {
+      position: relative;
+    }
+
+    .pw-wrap input {
+      padding-right: 42px;
+    }
+
+    .pw-eye {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text3);
+      cursor: pointer;
+      font-size: .88rem;
+      transition: color .15s;
+    }
+
+    .pw-eye:hover {
+      color: var(--blue);
+    }
+
+    /* STRENGTH */
+    .strength-row {
+      display: flex;
+      gap: 4px;
+      margin-top: 6px;
+    }
+
+    .sbar {
+      flex: 1;
+      height: 3px;
+      border-radius: 99px;
+      background: rgba(15, 23, 42, .08);
+      transition: background .3s;
+    }
+
+    .strength-label {
+      font-size: .7rem;
+      color: var(--text3);
+      margin-top: 4px;
+    }
+
+    /* MATCH */
+    .match-msg {
+      font-size: .72rem;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .match-ok {
+      color: var(--green);
+    }
+
+    .match-err {
+      color: var(--red);
+    }
+
+    /* GENDER */
+    .gender-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .gender-pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 15px;
+      border-radius: 99px;
+      cursor: pointer;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      font-size: .82rem;
+      color: var(--text2);
+      transition: all .18s;
+      user-select: none;
+    }
+
+    .gender-pill input {
+      display: none;
+    }
+
+    .gender-pill:has(input:checked) {
+      background: var(--blue-xlight);
+      border-color: rgba(37, 99, 235, .4);
+      color: var(--blue);
+    }
+
+    .gender-pill i {
+      font-size: .75rem;
+    }
+
+    /* CHECKBOXES */
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+
+    .check-row input[type="checkbox"],
+    .terms-row input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      background: #f8fafc;
+      border: 1.5px solid rgba(15, 23, 42, .18);
+      cursor: pointer;
+      transition: all .15s;
+      position: relative;
+    }
+
+    .check-row input[type="checkbox"]:checked,
+    .terms-row input[type="checkbox"]:checked {
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+
+    .check-row input[type="checkbox"]:checked::after,
+    .terms-row input[type="checkbox"]:checked::after {
+      content: '\f00c';
+      font-weight: 900;
+      color: #fff;
+      font-size: .5rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .check-row span {
+      font-size: .8rem;
+      color: var(--text2);
+    }
+
+    .terms-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      margin-top: 6px;
+    }
+
+    .terms-row input[type="checkbox"] {
+      margin-top: 2px;
+    }
+
+    .terms-row span {
+      font-size: .78rem;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    .terms-row a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .terms-row a:hover {
+      text-decoration: underline;
+    }
+
+    /* BUTTONS */
+    .step-nav {
+      display: flex;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .btn-next,
+    .btn-submit {
+      flex: 1;
+      padding: 12px 20px;
+      border-radius: 11px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--blue), var(--blue-g));
+      color: #fff;
+      font-size: .9rem;
+      font-weight: 700;
+      box-shadow: 0 5px 18px rgba(37, 99, 235, .28);
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-next:hover,
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 9px 24px rgba(37, 99, 235, .4);
+    }
+
+    .btn-prev {
+      padding: 12px 18px;
+      border-radius: 11px;
+      cursor: pointer;
+      background: #f4f7fe;
+      border: 1.5px solid var(--border);
+      color: var(--text2);
+      font-size: .9rem;
+      font-weight: 600;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .btn-prev:hover {
+      background: var(--blue-light);
+      border-color: rgba(37, 99, 235, .25);
+      color: var(--blue);
+    }
+
+    /* DIVIDER */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    .divider span {
+      font-size: .74rem;
+      color: var(--text3);
+      white-space: nowrap;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(15, 23, 42, .10);
+    }
+
+    /* LOGIN LINK */
+    .login-link {
+      text-align: center;
+      font-size: .82rem;
+      color: var(--text3);
+      margin-top: 18px;
+    }
+
+    .login-link a {
+      color: var(--blue);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    .hint {
+      font-size: .72rem;
+      color: var(--text3);
+      margin-top: 2px;
+    }
+
+    /* STEP PANELS */
+    .step-panel {
+      display: none;
+      animation: fadeIn .3s ease both;
+    }
+
+    .step-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .field-err {
+      font-size: .7rem;
+      color: var(--red);
+      margin-top: 3px;
+      display: none;
+    }
+
+    .field-err.show {
+      display: block;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-grid"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="page">
+
+    <!-- LEFT -->
+    <div class="left">
+      <div class="logo">
+        <div class="logo-mark">
+          <img src="assets/img/logo.png" alt="ScholarSwap"
+            onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-graduation-cap\'></i>'">
+        </div>
+        <span class="logo-text">Scholar<em>Swap</em></span>
+      </div>
+      <div class="left-hero">
+        <div class="left-eyebrow"><i class="fas fa-sparkles"></i> Free to join</div>
+        <h1 class="left-h1">Start sharing,<br><span>start learning.</span></h1>
+        <p class="left-sub">Join thousands of students and tutors exchanging notes, books, and newspapers across India.
+          Everything you need for academic success — in one place.</p>
+      </div>
+      <div class="perks">
+        <div class="perk">
+          <div class="perk-icon pi-b"><i class="fas fa-file-lines"></i></div>
+          <div class="perk-text"><strong>Upload &amp; Discover</strong>Share notes, books and newspapers with the
+            community</div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon pi-g"><i class="fas fa-download"></i></div>
+          <div class="perk-text"><strong>Free Downloads</strong>Access all resources completely free — forever</div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon pi-a"><i class="fas fa-users"></i></div>
+          <div class="perk-text"><strong>Students &amp; Tutors</strong>Connect with learners and educators across the
+            country</div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon pi-i"><i class="fas fa-shield-halved"></i></div>
+          <div class="perk-text"><strong>Admin Verified</strong>Every resource reviewed before going live</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+      <div class="form-wrap">
+
+        <div class="mobile-logo">
+          <div
+            style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#2563eb,#3b82f6);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;">
+            <img src="assets/img/logo.png" alt="" style="width:100%;height:100%;object-fit:contain;"
+              onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-graduation-cap\' style=\'color:#fff;font-size:1rem;\'></i>'">
+          </div>
+          <span style="font-size:1.15rem;font-weight:800;color:#0f172a;">Scholar<em
+              style="color:#b45309;font-style:normal;">Swap</em></span>
+        </div>
+
+        <!-- STEPS -->
+        <div class="steps" id="stepsBar">
+          <div class="step-item">
+            <div class="step-col">
+              <div class="step-circle active" id="sc1">1</div>
+              <div class="step-label active" id="sl1">Account</div>
+            </div>
+            <div class="step-line" id="line1"></div>
+          </div>
+          <div class="step-item">
+            <div class="step-col">
+              <div class="step-circle" id="sc2">2</div>
+              <div class="step-label" id="sl2">Personal</div>
+            </div>
+            <div class="step-line" id="line2"></div>
+          </div>
+          <div class="step-item">
+            <div class="step-col">
+              <div class="step-circle" id="sc3">3</div>
+              <div class="step-label" id="sl3">Academic</div>
+            </div>
+            <div class="step-line" id="line3"></div>
+          </div>
+          <div class="step-item" style="flex:0">
+            <div class="step-col">
+              <div class="step-circle" id="sc4">4</div>
+              <div class="step-label" id="sl4">Security</div>
+            </div>
+          </div>
+        </div>
+
+        <form method="POST" action="admin/user_pages/auth/register.php" id="signupForm" novalidate>
+
+          <!-- STEP 1 -->
+          <div class="step-panel active" id="step1">
+            <div class="step-head">
+              <h2>Create your account</h2>
+              <p>Choose your role and fill in your basic details</p>
+            </div>
+            <div class="field full" style="margin-bottom:18px;">
+              <label>I am joining as <span class="req">*</span></label>
+              <div class="role-toggle">
+                <label class="role-card selected" id="roleCardStudent">
+                  <input type="radio" name="role" value="student" checked>
+                  <div class="role-icon">🎓</div>
+                  <h4>Student</h4>
+                  <p>Access and share study resources</p>
+                </label>
+                <label class="role-card" id="roleCardTutor">
+                  <input type="radio" name="role" value="tutor">
+                  <div class="role-icon">📚</div>
+                  <h4>Tutor</h4>
+                  <p>Teach and share educational content</p>
+                </label>
+              </div>
+            </div>
+            <div class="g2">
+              <div class="field"><label>First Name <span class="req">*</span></label><input type="text"
+                  name="first_name" id="first_name" placeholder="Rahul" required><span class="field-err"
+                  id="err_first_name">Please enter your first name</span></div>
+              <div class="field"><label>Last Name <span class="req">*</span></label><input type="text" name="last_name"
+                  id="last_name" placeholder="Sharma" required><span class="field-err" id="err_last_name">Please enter
+                  your last name</span></div>
+              <div class="field"><label>Username <span class="req">*</span></label><input type="text" name="username"
+                  id="username" placeholder="rahul_sharma" required><span class="hint">Letters, numbers and _
+                  only</span><span class="field-err" id="err_username">Please enter a valid username</span></div>
+              <div class="field"><label>Email Address <span class="req">*</span></label><input type="email" name="email"
+                  id="email" placeholder="rahul@example.com" required><span class="field-err" id="err_email">Please
+                  enter a valid email</span></div>
+              <div class="field"><label>Phone Number <span class="req">*</span></label><input type="tel" name="phone"
+                  id="phone" placeholder="9876543210" required><span class="field-err" id="err_phone">Please enter a
+                  valid 10-digit number</span></div>
+              <div class="field"><label>Date of Birth <span class="req">*</span></label><input type="date" name="dob"
+                  id="dob" required><span class="field-err" id="err_dob">Please select your date of birth</span></div>
+            </div>
+            <div class="step-nav"><button type="button" class="btn-next" onclick="goNext(1)">Continue <i
+                  class="fas fa-arrow-right"></i></button></div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="step-panel" id="step2">
+            <div class="step-head">
+              <h2>Personal details</h2>
+              <p>Tell us a bit more about yourself</p>
+            </div>
+            <div class="g1">
+              <div class="field">
+                <label>Gender <span class="req">*</span></label>
+                <div class="gender-row">
+                  <label class="gender-pill"><input type="radio" name="gender" value="Male" required><i
+                      class="fas fa-mars"></i> Male</label>
+                  <label class="gender-pill"><input type="radio" name="gender" value="Female"><i
+                      class="fas fa-venus"></i> Female</label>
+                  <label class="gender-pill"><input type="radio" name="gender" value="Other"><i
+                      class="fas fa-genderless"></i> Other</label>
+                </div>
+                <span class="field-err" id="err_gender">Please select your gender</span>
+              </div>
+            </div>
+            <div class="g2" style="margin-top:14px;">
+              <div class="field">
+                <label>State <span class="req">*</span></label>
+                <select name="state" id="state" required>
+                  <option value="">Select State / UT</option>
+                  <optgroup label="States">
+                    <option>Andhra Pradesh</option>
+                    <option>Arunachal Pradesh</option>
+                    <option>Assam</option>
+                    <option>Bihar</option>
+                    <option>Chhattisgarh</option>
+                    <option>Goa</option>
+                    <option>Gujarat</option>
+                    <option>Haryana</option>
+                    <option>Himachal Pradesh</option>
+                    <option>Jharkhand</option>
+                    <option>Karnataka</option>
+                    <option>Kerala</option>
+                    <option>Madhya Pradesh</option>
+                    <option>Maharashtra</option>
+                    <option>Manipur</option>
+                    <option>Meghalaya</option>
+                    <option>Mizoram</option>
+                    <option>Nagaland</option>
+                    <option>Odisha</option>
+                    <option>Punjab</option>
+                    <option>Rajasthan</option>
+                    <option>Sikkim</option>
+                    <option>Tamil Nadu</option>
+                    <option>Telangana</option>
+                    <option>Tripura</option>
+                    <option>Uttar Pradesh</option>
+                    <option>Uttarakhand</option>
+                    <option>West Bengal</option>
+                  </optgroup>
+                  <optgroup label="Union Territories">
+                    <option>Andaman and Nicobar Islands</option>
+                    <option>Chandigarh</option>
+                    <option>Dadra and Nagar Haveli and Daman and Diu</option>
+                    <option value="Delhi">Delhi (NCT)</option>
+                    <option>Jammu and Kashmir</option>
+                    <option>Ladakh</option>
+                    <option>Lakshadweep</option>
+                    <option>Puducherry</option>
+                  </optgroup>
+                </select>
+                <span class="field-err" id="err_state">Please select your state</span>
+              </div>
+              <div class="field"><label>District <span class="req">*</span></label><input type="text" name="district"
+                  id="district" placeholder="e.g. Lucknow" required><span class="field-err" id="err_district">Please
+                  enter your district</span></div>
+              <div class="field full"><label>Current Address <span class="req">*</span></label><input type="text"
+                  name="current_address" id="currentAddress" placeholder="House / Flat, Street, City" required><span
+                  class="field-err" id="err_current_address">Please enter your current address</span></div>
+              <div class="field full">
+                <label>Permanent Address <span class="req">*</span></label>
+                <input type="text" name="permanent_address" id="permanentAddress" placeholder="Permanent address"
+                  required>
+                <label class="check-row" style="margin-top:6px;"><input type="checkbox" id="sameAddress"><span>Same as
+                    current address</span></label>
+                <span class="field-err" id="err_permanent_address">Please enter your permanent address</span>
+              </div>
+            </div>
+            <div class="step-nav">
+              <button type="button" class="btn-prev" onclick="goPrev(2)"><i class="fas fa-arrow-left"></i> Back</button>
+              <button type="button" class="btn-next" onclick="goNext(2)">Continue <i
+                  class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="step-panel" id="step3">
+            <div class="step-head">
+              <h2>Academic details</h2>
+              <p>Help others discover your resources</p>
+            </div>
+            <div class="g1">
+              <div class="field" id="fieldCourse"><label>Course / Class <span class="req">*</span></label><input
+                  type="text" name="course" id="course" placeholder="e.g. B.Tech CSE, Class 12, M.Sc"><span
+                  class="field-err" id="err_course">Please enter your course</span></div>
+              <div class="field" id="fieldQual" style="display:none;"><label>Qualification <span
+                    class="req">*</span></label><input type="text" name="qualification" id="qualification"
+                  placeholder="e.g. M.Tech, PhD, B.Ed"></div>
+              <div class="field full"><label>Institution / University <span class="req">*</span></label><input
+                  type="text" name="institution" id="institution" placeholder="e.g. Delhi University, IIT Bombay"
+                  required><span class="field-err" id="err_institution">Please enter your institution</span></div>
+              <div class="field full"><label>Subjects of Interest</label><input type="text" name="subjects"
+                  placeholder="e.g. Maths, Physics, Programming (comma-separated)"><span class="hint">Optional — helps
+                  personalise your feed</span></div>
+              <div class="field full"><label>Short Bio <span
+                    style="color:var(--text3);font-weight:400;font-size:.72rem;">(Optional)</span></label><textarea
+                  name="bio" placeholder="Tell the community a bit about yourself…" rows="3"></textarea></div>
+            </div>
+            <div class="step-nav">
+              <button type="button" class="btn-prev" onclick="goPrev(3)"><i class="fas fa-arrow-left"></i> Back</button>
+              <button type="button" class="btn-next" onclick="goNext(3)">Continue <i
+                  class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- STEP 4 -->
+          <div class="step-panel" id="step4">
+            <div class="step-head">
+              <h2>Set your password</h2>
+              <p>Use a strong password to keep your account safe</p>
+            </div>
+            <div class="g1">
+              <div class="field">
+                <label>Password <span class="req">*</span></label>
+                <div class="pw-wrap"><input type="password" name="password" id="password"
+                    placeholder="Min. 8 characters" required><button type="button" class="pw-eye" id="eyeBtn1"><i
+                      class="fas fa-eye" id="eyeIcon1"></i></button></div>
+                <div class="strength-row" id="strengthBars">
+                  <div class="sbar" id="bar1"></div>
+                  <div class="sbar" id="bar2"></div>
+                  <div class="sbar" id="bar3"></div>
+                  <div class="sbar" id="bar4"></div>
+                </div>
+                <div class="strength-label" id="strengthLabel">Enter a password</div>
+                <span class="field-err" id="err_password">Password must be at least 8 characters</span>
+              </div>
+              <div class="field">
+                <label>Confirm Password <span class="req">*</span></label>
+                <div class="pw-wrap"><input type="password" id="confirm_password" placeholder="Repeat your password"
+                    required><button type="button" class="pw-eye" id="eyeBtn2"><i class="fas fa-eye"
+                      id="eyeIcon2"></i></button></div>
+                <div class="match-msg" id="matchMsg"></div>
+                <span class="field-err" id="err_confirm">Passwords do not match</span>
+              </div>
+            </div>
+            <div class="divider"><span>by creating an account you agree to our</span></div>
+            <label class="terms-row">
+              <input type="checkbox" id="termsCheck" required>
+              <span>I agree to ScholarSwap's <a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy
+                  Policy</a></span>
+            </label>
+            <span class="field-err" id="err_terms" style="margin-top:6px;">You must agree to the terms</span>
+            <div class="step-nav">
+              <button type="button" class="btn-prev" onclick="goPrev(4)"><i class="fas fa-arrow-left"></i> Back</button>
+              <button type="submit" class="btn-submit" id="submitBtn"><i class="fas fa-user-plus"></i> Create
+                Account</button>
+            </div>
+          </div>
+
+        </form>
+        <p class="login-link">Already have an account? <a href="login.html">Sign in</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let current = 1; const TOTAL = 4;
+    function setStep(n) {
+      document.querySelectorAll('.step-panel').forEach((p, i) => p.classList.toggle('active', i + 1 === n));
+      for (let i = 1; i <= TOTAL; i++) {
+        const sc = document.getElementById('sc' + i), sl = document.getElementById('sl' + i);
+        sc.classList.remove('active', 'done'); sl.classList.remove('active', 'done');
+        if (i < n) { sc.classList.add('done'); sl.classList.add('done'); sc.innerHTML = '<i class="fas fa-check" style="font-size:.6rem"></i>'; }
+        else if (i === n) { sc.classList.add('active'); sl.classList.add('active'); sc.textContent = i; }
+        else { sc.textContent = i; }
+        if (i < TOTAL) { const l = document.getElementById('line' + i); if (l) l.classList.toggle('done', i < n); }
+      }
+      current = n;
+      document.querySelector('.right').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function validateStep(n) {
+      let ok = true;
+      const show = id => { const e = document.getElementById(id); if (e) e.classList.add('show'); };
+      const hide = id => { const e = document.getElementById(id); if (e) e.classList.remove('show'); };
+      const val = id => { const e = document.getElementById(id); return e ? e.value.trim() : ''; };
+      if (n === 1) {
+        ['first_name', 'last_name', 'username', 'email', 'phone', 'dob'].forEach(id => { if (!val(id)) { show('err_' + id); ok = false; } else hide('err_' + id); });
+        if (val('email') && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('email'))) { show('err_email'); ok = false; }
+        if (val('phone') && !/^\d{10}$/.test(val('phone').replace(/\D/g, ''))) { show('err_phone'); ok = false; }
+      }
+      if (n === 2) {
+        const g = document.querySelector('input[name="gender"]:checked');
+        if (!g) { show('err_gender'); ok = false; } else hide('err_gender');
+        if (!val('state')) { show('err_state'); ok = false; } else hide('err_state');
+        if (!val('district')) { show('err_district'); ok = false; } else hide('err_district');
+        const ca = document.getElementById('currentAddress'), pa = document.getElementById('permanentAddress');
+        if (!ca || !ca.value.trim()) { show('err_current_address'); ok = false; } else hide('err_current_address');
+        if (!pa || !pa.value.trim()) { show('err_permanent_address'); ok = false; } else hide('err_permanent_address');
+      }
+      if (n === 3) {
+        const role = document.querySelector('input[name="role"]:checked')?.value;
+        if (role === 'student' && !val('course')) { show('err_course'); ok = false; } else hide('err_course');
+        if (!val('institution')) { show('err_institution'); ok = false; } else hide('err_institution');
+      }
+      if (n === 4) {
+        const pw = val('password'), cpw = document.getElementById('confirm_password').value, terms = document.getElementById('termsCheck').checked;
+        if (pw.length < 8) { show('err_password'); ok = false; } else hide('err_password');
+        if (pw !== cpw || !cpw) { show('err_confirm'); ok = false; } else hide('err_confirm');
+        if (!terms) { show('err_terms'); ok = false; } else hide('err_terms');
+      }
+      return ok;
+    }
+    function goNext(n) { if (!validateStep(n)) return; if (n < TOTAL) setStep(n + 1); }
+    function goPrev(n) { if (n > 1) setStep(n - 1); }
+
+    document.querySelectorAll('input[name="role"]').forEach(r => {
+      r.addEventListener('change', () => {
+        document.getElementById('roleCardStudent').classList.toggle('selected', r.value === 'student');
+        document.getElementById('roleCardTutor').classList.toggle('selected', r.value === 'tutor');
+        document.getElementById('fieldCourse').style.display = r.value === 'tutor' ? 'none' : '';
+        document.getElementById('fieldQual').style.display = r.value === 'tutor' ? '' : 'none';
+      });
+    });
+
+    document.getElementById('sameAddress').addEventListener('change', function () {
+      const p = document.getElementById('permanentAddress');
+      if (this.checked) { p.value = document.getElementById('currentAddress').value; p.readOnly = true; }
+      else { p.readOnly = false; p.value = ''; }
+    });
+    document.getElementById('currentAddress').addEventListener('input', function () {
+      if (document.getElementById('sameAddress').checked) document.getElementById('permanentAddress').value = this.value;
+    });
+
+    const bars = [1, 2, 3, 4].map(i => document.getElementById('bar' + i));
+    const slabel = document.getElementById('strengthLabel');
+    const colors = ['#ef4444', '#f59e0b', '#3b82f6', '#059669'];
+    const labels = ['Weak', 'Fair', 'Good', 'Strong'];
+    document.getElementById('password').addEventListener('input', function () {
+      const v = this.value; let score = 0;
+      if (v.length >= 8) score++; if (/[A-Z]/.test(v)) score++; if (/[0-9]/.test(v)) score++; if (/[^A-Za-z0-9]/.test(v)) score++;
+      bars.forEach((b, i) => { b.style.background = i < score ? colors[score - 1] : 'rgba(15,23,42,.08)'; });
+      slabel.style.color = score ? colors[score - 1] : 'var(--text3)';
+      slabel.textContent = v.length ? (labels[score - 1] || 'Weak') : 'Enter a password';
+      checkMatch();
+    });
+
+    const matchMsg = document.getElementById('matchMsg');
+    function checkMatch() {
+      const pw = document.getElementById('password').value, cpw = document.getElementById('confirm_password').value;
+      if (!cpw) { matchMsg.innerHTML = ''; return; }
+      if (pw === cpw) { matchMsg.innerHTML = '<i class="fas fa-check-circle"></i> Passwords match'; matchMsg.className = 'match-msg match-ok'; }
+      else { matchMsg.innerHTML = '<i class="fas fa-xmark-circle"></i> Passwords do not match'; matchMsg.className = 'match-msg match-err'; }
+    }
+    document.getElementById('confirm_password').addEventListener('input', checkMatch);
+
+    function togglePw(inputId, iconId) {
+      const inp = document.getElementById(inputId), icon = document.getElementById(iconId), show = inp.type === 'password';
+      inp.type = show ? 'text' : 'password'; icon.className = show ? 'fas fa-eye-slash' : 'fas fa-eye';
+    }
+    document.getElementById('eyeBtn1').addEventListener('click', () => togglePw('password', 'eyeIcon1'));
+    document.getElementById('eyeBtn2').addEventListener('click', () => togglePw('confirm_password', 'eyeIcon2'));
+
+    document.getElementById('signupForm').addEventListener('submit', function (e) { if (!validateStep(4)) e.preventDefault(); });
+
+    const params = new URLSearchParams(location.search), s = params.get('s'), msg = params.get('msg');
+    if (s === 'success') {
+      Swal.fire({ icon: 'success', title: 'Account Created! 🎉', text: 'Welcome to ScholarSwap! Redirecting to login…', timer: 4000, timerProgressBar: true, showConfirmButton: false, background: '#ffffff', color: '#0f172a', iconColor: '#059669', allowOutsideClick: false });
+      setTimeout(() => window.location.replace('index.php'), 3500);
+    } else if (s === 'failed') {
+      Swal.fire({ icon: 'error', title: 'Registration Failed', text: msg || 'Something went wrong. Please try again.', confirmButtonText: 'Try Again', background: '#ffffff', color: '#0f172a', iconColor: '#dc2626', confirmButtonColor: '#2563eb' });
+      history.replaceState(null, '', 'signup.html');
+    }
+  </script>
+</body>
+
+</html>

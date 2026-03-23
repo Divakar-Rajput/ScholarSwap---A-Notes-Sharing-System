@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | ScholarSwap</title>
+    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        :root {
+            --blue: #2563eb;
+            --blue-g: #3b82f6;
+            --blue-light: #eff6ff;
+            --blue-xlight: #dbeafe;
+            --gold: #b45309;
+            --red: #dc2626;
+            --green: #059669;
+            --indigo: #4f46e5;
+            --indigo-g: #6366f1;
+            --indigo-light: #eef2ff;
+            --indigo-xlight: #e0e7ff;
+            --amber-xlight: #fef3c7;
+            --green-xlight: #dcfce7;
+            --surface: #ffffff;
+            --page-bg: #f4f7fe;
+            --section-alt: #eef2fc;
+            --text: #0f172a;
+            --text2: #475569;
+            --text3: #94a3b8;
+            --indigo: #4f46e5;
+            --amber: #f59e0b;
+            --coral: #f05252;
+            --border: rgba(15, 23, 42, .10);
+            --shadow-sm: 0 1px 4px rgba(15, 23, 42, .06);
+            --shadow-md: 0 4px 16px rgba(15, 23, 42, .08);
+            --shadow-lg: 0 20px 48px rgba(15, 23, 42, .12);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            background: var(--page-bg);
+            color: var(--text);
+            overflow: hidden;
+        }
+
+        /* ── Light grid (same as index.php) ── */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(15, 23, 42, .025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 23, 42, .025) 1px, transparent 1px);
+            background-size: 56px 56px;
+        }
+
+        /* ── Ambient orbs — light pastel (index.php hero style) ── */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: drift 18s ease-in-out infinite alternate;
+        }
+
+        .orb1 {
+            width: 600px;
+            height: 500px;
+            top: -160px;
+            left: -120px;
+            background: radial-gradient(circle, rgba(37, 99, 235, .09) 0%, transparent 65%);
+            filter: blur(60px);
+        }
+
+        .orb2 {
+            width: 420px;
+            height: 420px;
+            bottom: -100px;
+            right: -80px;
+            background: radial-gradient(circle, rgba(99, 102, 241, .07) 0%, transparent 65%);
+            filter: blur(60px);
+            animation-delay: -7s;
+        }
+
+        .orb3 {
+            width: 260px;
+            height: 260px;
+            top: 38%;
+            right: 14%;
+            background: radial-gradient(circle, rgba(180, 83, 9, .05) 0%, transparent 65%);
+            filter: blur(50px);
+            animation-delay: -13s;
+        }
+
+        @keyframes drift {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(22px, 14px) scale(1.05);
+            }
+        }
+
+        /* ============================================================
+           LAYOUT
+        ============================================================ */
+        .page {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 490px;
+        }
+
+        /* ============================================================
+           LEFT PANEL
+        ============================================================ */
+        .left {
+            padding: 21px 64px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 28px;
+            position: relative;
+            overflow: hidden;
+            background: url('assets/img/login-bg.jpg') center/cover no-repeat;
+        }
+
+        .left::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: var(--page-bg);
+            opacity: .9;
+
+        }
+
+        /* all direct children sit above the overlay */
+        .left>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            animation: slideDown .7s ease both;
+        }
+
+        .logo-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #fff;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .logo-mark img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .logo-text em {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        .left-hero {
+            animation: slideLeft .7s .1s ease both;
+        }
+
+        .left-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--indigo-g);
+            background: var(--indigo-xlight);
+            border: 1px solid rgba(99, 102, 241, .22);
+            border-radius: 99px;
+            padding: 5px 14px;
+            margin-bottom: 18px;
+        }
+
+        .left-h1 {
+            font-size: 2.9rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+
+        .left-h1 span {
+            background: linear-gradient(135deg, var(--indigo) 0%, var(--coral) 50%, var(--amber) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .left-sub {
+            font-size: .95rem;
+            color: var(--text2);
+            line-height: 1.72;
+            max-width: 420px;
+        }
+
+        /* Feature cards */
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            animation: slideLeft .7s .25s ease both;
+        }
+
+        .feat {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            border-radius: 14px;
+            background: #ffffff;
+            border: 1px solid rgba(15, 23, 42, .08);
+            box-shadow: var(--shadow-sm);
+            transition: all .2s;
+            cursor: default;
+        }
+
+        .feat:hover {
+            transform: translateX(6px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(37, 99, 235, .15);
+        }
+
+        .feat-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .88rem;
+        }
+
+        .fi-b {
+            background: var(--blue-xlight);
+            color: var(--blue);
+        }
+
+        .fi-g {
+            background: var(--green-xlight);
+            color: var(--green);
+        }
+
+        .fi-a {
+            background: var(--amber-xlight);
+            color: var(--gold);
+        }
+
+        .feat-text {
+            font-size: .87rem;
+            color: var(--text2);
+        }
+
+        .feat-text strong {
+            display: block;
+            font-size: .9rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 1px;
+        }
+
+        /* ============================================================
+           RIGHT PANEL
+        ============================================================ */
+        .right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 36px;
+            background: #ffffff;
+            border-left: 1px solid rgba(15, 23, 42, .09);
+            box-shadow: -8px 0 40px rgba(15, 23, 42, .05);
+            overflow-y: auto;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 400px;
+            animation: slideUp .65s .1s ease both;
+        }
+
+        /* Card header */
+        .card-head {
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .card-head h2 {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+
+        .card-head p {
+            font-size: .87rem;
+            color: var(--text2);
+        }
+
+        /* Social */
+        .socials {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .soc-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 11px;
+            border: 1.5px solid rgba(15, 23, 42, .12);
+            background: var(--page-bg);
+            color: var(--text);
+            font-size: .875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .soc-btn:hover {
+            background: #fff;
+            border-color: rgba(37, 99, 235, .25);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .soc-btn i {
+            font-size: 1rem;
+        }
+
+        .soc-btn.google i {
+            color: #ea4335;
+        }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 18px 0;
+            font-size: .77rem;
+            color: var(--text3);
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(15, 23, 42, .10);
+        }
+
+        /* Form */
+        .fgroup {
+            margin-bottom: 16px;
+        }
+
+        .fgroup label {
+            display: block;
+            font-size: .73rem;
+            font-weight: 700;
+            color: var(--text2);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+
+        .finput-wrap {
+            position: relative;
+        }
+
+        .finput-wrap .fi {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text3);
+            font-size: .85rem;
+            pointer-events: none;
+            transition: color .2s;
+        }
+
+        .finput {
+            width: 100%;
+            padding: 11px 14px 11px 40px;
+            background: var(--page-bg);
+            border: 1.5px solid rgba(15, 23, 42, .12);
+            border-radius: 11px;
+            color: var(--text);
+            font-size: .88rem;
+            outline: none;
+            transition: all .18s;
+        }
+
+        .finput::placeholder {
+            color: var(--text3);
+        }
+
+        .finput:focus {
+            border-color: var(--blue);
+            background: var(--blue-light);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, .10);
+        }
+
+        .finput-wrap:focus-within .fi {
+            color: var(--blue);
+        }
+
+        .fgroup.err .finput {
+            border-color: var(--red);
+            background: #fff5f5;
+        }
+
+        .err-msg {
+            display: none;
+            font-size: .72rem;
+            color: var(--red);
+            margin-top: 5px;
+        }
+
+        .fgroup.err .err-msg {
+            display: block;
+        }
+
+        .pw-toggle {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text3);
+            cursor: pointer;
+            font-size: .85rem;
+            padding: 4px;
+            transition: color .18s;
+            z-index: 1;
+        }
+
+        .pw-toggle:hover {
+            color: var(--text);
+        }
+
+        .between-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: .82rem;
+        }
+
+        .check-lbl {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--text2);
+            cursor: pointer;
+        }
+
+        .check-lbl input {
+            width: 14px;
+            height: 14px;
+            accent-color: var(--blue);
+            cursor: pointer;
+        }
+
+        .forgot {
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color .18s;
+        }
+
+        .forgot:hover {
+            color: var(--indigo);
+        }
+
+        /* Submit button */
+        .sub-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 11px;
+            background: linear-gradient(135deg, var(--blue), var(--blue-g));
+            color: #fff;
+            font-size: .93rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 6px 20px rgba(37, 99, 235, .28);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sub-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, .14), transparent);
+            opacity: 0;
+            transition: opacity .2s;
+            border-radius: 11px;
+        }
+
+        .sub-btn:hover::before {
+            opacity: 1;
+        }
+
+        .sub-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 28px rgba(37, 99, 235, .38);
+        }
+
+        .sub-btn:active {
+            transform: translateY(0);
+        }
+
+        .sub-btn.loading .btn-text {
+            display: none;
+        }
+
+        .sub-btn.loading .btn-loader {
+            display: flex;
+        }
+
+        .btn-loader {
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, .35);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin .6s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Card footer */
+        .card-divider {
+            height: 1px;
+            background: rgba(15, 23, 42, .08);
+            margin: 22px 0;
+        }
+
+        .card-foot {
+            text-align: center;
+            font-size: .83rem;
+            color: var(--text2);
+            margin-bottom: 14px;
+        }
+
+        .card-foot a {
+            color: var(--blue);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color .18s;
+        }
+
+        .card-foot a:hover {
+            color: var(--indigo);
+        }
+
+        /* Trust badges */
+        .trust-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .7rem;
+            color: var(--text3);
+            font-weight: 500;
+        }
+
+        .trust-item i {
+            font-size: .67rem;
+            color: var(--green);
+        }
+
+        /* Banned alert */
+        .swal2-popup.swal-banned {
+            border: 1px solid rgba(220, 38, 38, .2) !important;
+            box-shadow: 0 0 50px rgba(220, 38, 38, .07) !important;
+        }
+
+        @keyframes pulse-red {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, .35);
+            }
+
+            50% {
+                box-shadow: 0 0 0 12px rgba(220, 38, 38, 0);
+            }
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media(max-width:960px) {
+            .page {
+                grid-template-columns: 1fr;
+            }
+
+            .left {
+                display: none;
+            }
+
+            .right {
+                border-left: none;
+                background: var(--page-bg);
+                box-shadow: none;
+                padding: 32px 24px;
+            }
+
+            body {
+                overflow: auto;
+            }
+        }
+
+        @media(max-width:480px) {
+            .right {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-grid"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+
+    <div class="page">
+
+        <!-- ═══ LEFT ═══ -->
+        <section class="left">
+
+            <div class="logo">
+                <div class="logo-mark">
+                    <img src="assets/img/logo.png" alt="ScholarSwap"
+                        onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-graduation-cap\'></i>'">
+                </div>
+                <div class="logo-text">Scholar<em>Swap</em></div>
+            </div>
+
+            <div class="left-hero">
+                <div class="left-eyebrow">
+                    <i class="fas fa-graduation-cap"></i> Academic Resource Platform
+                </div>
+                <h1 class="left-h1">
+                    Learn Together,<br>
+                    <span>Grow Together</span>
+                </h1>
+                <p class="left-sub">
+                    A collaborative platform where students and tutors exchange
+                    notes, share resources, and grow academically — all in one place.
+                </p>
+            </div>
+
+            <div class="features">
+                <div class="feat">
+                    <div class="feat-icon fi-b"><i class="fas fa-book-open"></i></div>
+                    <div class="feat-text">
+                        <strong>Verified Study Resources</strong>
+                        Access notes, books &amp; newspapers reviewed by experts.
+                    </div>
+                </div>
+                <div class="feat">
+                    <div class="feat-icon fi-g"><i class="fas fa-users"></i></div>
+                    <div class="feat-text">
+                        <strong>Connect with Tutors</strong>
+                        Find qualified tutors and study partners in your field.
+                    </div>
+                </div>
+                <div class="feat">
+                    <div class="feat-icon fi-a"><i class="fas fa-chart-line"></i></div>
+                    <div class="feat-text">
+                        <strong>Track Your Progress</strong>
+                        Monitor downloads, ratings and your learning journey.
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ═══ RIGHT ═══ -->
+        <section class="right">
+            <div class="card">
+
+                <div class="card-head">
+                    <h2>Welcome Back 👋</h2>
+                    <p>Sign in to continue your learning journey</p>
+                </div>
+
+                <div class="socials">
+                    <button type="button" class="soc-btn google" onclick="handleSocial('google')">
+                        <i class="fab fa-google"></i> Continue with Google
+                    </button>
+                </div>
+
+                <div class="divider"><span>or sign in with email</span></div>
+
+                <form method="POST" action="admin/user_pages/auth/login.php" id="loginForm" novalidate>
+                    <input type="hidden" name="redirect" id="redirectInput">
+                    <input type="hidden" name="role" id="roleInput" value="student">
+
+                    <div class="fgroup" id="emailGroup">
+                        <label>Email Address</label>
+                        <div class="finput-wrap">
+                            <input class="finput" type="email" name="email" id="emailInput"
+                                placeholder="you@example.com" required autocomplete="email">
+                            <i class="fas fa-envelope fi"></i>
+                        </div>
+                        <div class="err-msg">Please enter a valid email address.</div>
+                    </div>
+
+                    <div class="fgroup" id="passGroup">
+                        <label>Password</label>
+                        <div class="finput-wrap">
+                            <input class="finput" type="password" name="password" id="passInput" placeholder="••••••••"
+                                required autocomplete="current-password" style="padding-right:42px">
+                            <i class="fas fa-lock fi"></i>
+                            <button type="button" class="pw-toggle" id="pwToggle">
+                                <i class="fas fa-eye" id="pwIcon"></i>
+                            </button>
+                        </div>
+                        <div class="err-msg">Password must be at least 6 characters.</div>
+                    </div>
+
+                    <div class="between-row">
+                        <label class="check-lbl">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="sub-btn" id="subBtn">
+                        <span class="btn-text">
+                            <i class="fas fa-right-to-bracket"></i>&nbsp; Sign In
+                        </span>
+                        <span class="btn-loader">
+                            <span class="spinner"></span> Signing in…
+                        </span>
+                    </button>
+                </form>
+
+                <div class="card-divider"></div>
+
+                <div class="card-foot">
+                    New here? <a href="signup.html">Create a free account</a>
+                </div>
+
+                <div class="trust-row">
+                    <span class="trust-item"><i class="fas fa-shield-halved"></i> Secure login</span>
+                    <span class="trust-item"><i class="fas fa-lock"></i> 256-bit SSL</span>
+                    <span class="trust-item"><i class="fas fa-user-shield"></i> Privacy protected</span>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function handleSocial(provider) {
+            Swal.fire({
+                icon: 'info', iconColor: '#2563eb',
+                title: provider.charAt(0).toUpperCase() + provider.slice(1) + ' Login',
+                text: 'Social login will be available soon.',
+                timer: 2400, showConfirmButton: false,
+                background: '#ffffff', color: '#0f172a',
+            });
+        }
+
+        /* Password toggle */
+        const passInput = document.getElementById('passInput');
+        const pwIcon = document.getElementById('pwIcon');
+        document.getElementById('pwToggle').addEventListener('click', () => {
+            const show = passInput.type === 'password';
+            passInput.type = show ? 'text' : 'password';
+            pwIcon.className = show ? 'fas fa-eye-slash' : 'fas fa-eye';
+        });
+
+        /* Remember me */
+        const emailInput = document.getElementById('emailInput');
+        const rememberChk = document.getElementById('rememberMe');
+        const savedEmail = localStorage.getItem('ss_email');
+        if (savedEmail) { emailInput.value = savedEmail; rememberChk.checked = true; }
+
+        /* Redirect tracking */
+        const params = new URLSearchParams(window.location.search);
+        let lastPage = params.get('redirect') || '';
+        if (!lastPage && document.referrer && !document.referrer.includes('login'))
+            lastPage = document.referrer;
+        document.getElementById('redirectInput').value = lastPage;
+
+        /* Form validation */
+        const form = document.getElementById('loginForm');
+        const subBtn = document.getElementById('subBtn');
+
+        form.addEventListener('submit', e => {
+            let valid = true;
+            const emailG = document.getElementById('emailGroup');
+            if (!emailInput.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+                emailG.classList.add('err'); valid = false;
+            } else { emailG.classList.remove('err'); }
+
+            const passG = document.getElementById('passGroup');
+            if (passInput.value.length < 6) {
+                passG.classList.add('err'); valid = false;
+            } else { passG.classList.remove('err'); }
+
+            if (!valid) { e.preventDefault(); return; }
+
+            if (rememberChk.checked)
+                localStorage.setItem('ss_email', emailInput.value.trim());
+            else
+                localStorage.removeItem('ss_email');
+
+            subBtn.classList.add('loading');
+            subBtn.disabled = true;
+        });
+
+        window.addEventListener('load', () => {
+            subBtn.classList.remove('loading');
+            subBtn.disabled = false;
+        });
+
+        emailInput.addEventListener('input', () => document.getElementById('emailGroup').classList.remove('err'));
+        passInput.addEventListener('input', () => document.getElementById('passGroup').classList.remove('err'));
+
+        /* SweetAlert status handlers — light theme */
+        const status = params.get('s');
+        const redirectFromBack = params.get('r');
+        const swalOpts = { background: '#ffffff', color: '#0f172a' };
+
+        if (status === 'success') {
+            Swal.fire({
+                ...swalOpts, icon: 'success', iconColor: '#059669',
+                title: 'Login Successful 🎉', text: 'Redirecting you now…',
+                timer: 4000, timerProgressBar: true,
+                showConfirmButton: false, allowOutsideClick: false,
+            });
+            setTimeout(() => window.location.replace(redirectFromBack || lastPage || 'index.php'), 4000);
+        }
+
+        if (status === 'invalid') {
+            Swal.fire({
+                ...swalOpts, icon: 'error', iconColor: '#dc2626',
+                title: 'Login Failed', text: 'Invalid email or password. Please try again.',
+                timer: 3000, showConfirmButton: false,
+            });
+            setTimeout(() => history.replaceState(null, '', 'login.html'), 500);
+        }
+
+        if (status === 'registered') {
+            Swal.fire({
+                ...swalOpts, icon: 'success', iconColor: '#059669',
+                title: 'Account Created!', text: 'Welcome to ScholarSwap. Please sign in.',
+                timer: 3000, showConfirmButton: false,
+            });
+            setTimeout(() => history.replaceState(null, '', 'login.html'), 500);
+        }
+
+        if (status === 'banned') {
+            Swal.fire({
+                ...swalOpts,
+                showConfirmButton: true,
+                confirmButtonText: 'I Understand',
+                confirmButtonColor: '#dc2626',
+                allowOutsideClick: false,
+                customClass: { popup: 'swal-banned' },
+                html: `
+              <div style="width:68px;height:68px;border-radius:50%;
+                background:rgba(220,38,38,.08);border:2px solid rgba(220,38,38,.22);
+                display:flex;align-items:center;justify-content:center;
+                margin:4px auto 18px;font-size:1.7rem;color:#dc2626;
+                animation:pulse-red 2s ease-in-out infinite;">
+                <i class="fas fa-ban"></i>
+              </div>
+              <h2 style="font-size:1.35rem;font-weight:800;
+                color:#0f172a;margin-bottom:10px;">Account Suspended</h2>
+              <p style="font-size:.88rem;color:#475569;line-height:1.65;margin-bottom:16px;">
+                Your account has been
+                <strong style="color:#dc2626;">suspended</strong>
+                and you no longer have access to ScholarSwap.
+              </p>
+              <div style="background:rgba(220,38,38,.05);border:1px solid rgba(220,38,38,.18);
+                border-radius:10px;padding:13px 16px;font-size:.82rem;color:#475569;
+                text-align:left;line-height:1.65;">
+                <i class="fas fa-circle-info" style="color:#dc2626;margin-right:7px;"></i>
+                If you believe this is a mistake, contact us at
+                <a href="mailto:support@scholarswap.com"
+                   style="color:#2563eb;font-weight:600;text-decoration:none;">
+                  support@scholarswap.com
+                </a>
+              </div>`,
+            });
+            setTimeout(() => history.replaceState(null, '', 'login.html'), 500);
+        }
+    </script>
+</body>
+
+</html>

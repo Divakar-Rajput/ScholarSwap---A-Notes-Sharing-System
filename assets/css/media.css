@@ -1,0 +1,1198 @@
+/* ══════════════════════════════════════════════════════════════
+   SCHOLARSWAP — RESPONSIVE MEDIA QUERIES
+   Breakpoints: ≤1100px | ≤960px | ≤768px | ≤480px
+   Covers: Header & Nav, Cards & Grids, Sidebar & Filters,
+           Search bars & Hero sections, all listing pages
+══════════════════════════════════════════════════════════════ */
+
+
+/* ============================================================
+   ≤ 1100px  — Wide tablet / small desktop
+============================================================ */
+@media (max-width: 1100px) {
+
+    /* ── Header ── */
+    .hdr-search {
+        max-width: 220px;
+    }
+
+    .hdr-nav a {
+        padding: 7px 10px;
+        font-size: .82rem;
+    }
+
+    .btn-upload {
+        padding: 7px 12px;
+        font-size: .8rem;
+    }
+
+    /* ── Hero banner ── */
+    .hsb-h1 {
+        font-size: 2.4rem;
+    }
+
+    .hsb-search {
+        max-width: 540px;
+    }
+
+    /* ── Tabs / slider ── */
+    .res-card {
+        flex: 0 0 calc(33.333% - 11px);
+    }
+
+    /* ── Stats strip ── */
+    .stats-row {
+        gap: 16px;
+    }
+
+    .stat-num {
+        font-size: 1.75rem;
+    }
+
+    /* ── Section grids ── */
+    .why-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+    }
+
+    .how-grid {
+        gap: 16px;
+    }
+
+    /* ── Testimonials ── */
+    .t-card {
+        flex: 0 0 calc(50% - 8px);
+    }
+
+    /* ── Notes / Books layout ── */
+    .layout {
+        grid-template-columns: 230px 1fr;
+        gap: 20px;
+    }
+
+    .notes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+
+    .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    }
+
+    /* ── Search page ── */
+    .rc-actions {
+        padding: 10px 12px;
+    }
+
+    .btn-view {
+        padding: 7px 12px;
+        font-size: .72rem;
+    }
+}
+
+
+/* ============================================================
+   ≤ 960px  — Tablet landscape / collapsed sidebar
+============================================================ */
+@media (max-width: 960px) {
+
+    /* ── Header ── */
+    .hdr-nav,
+    .hdr-search {
+        display: none;
+    }
+
+    .mobile-search-btn {
+        display: flex;
+    }
+
+    .site-header {
+        padding: 0 16px;
+        gap: 10px;
+    }
+
+    .hdr-logo-mark {
+        width: 38px;
+        height: 38px;
+    }
+
+    .hdr-logo-text {
+        font-size: 1rem;
+    }
+
+    .btn-upload {
+        padding: 7px 14px;
+    }
+
+    /* ── Mobile search bar ── */
+    #mobileSearchBar {
+        padding: 10px 16px;
+    }
+
+    #mobileSearchBar .hdr-search {
+        display: flex;
+        max-width: 100%;
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    /* ── Hero banner ── */
+    .hero-search-banner {
+        padding: 28px 18px 48px;
+    }
+
+    .hsb-h1 {
+        font-size: 2rem;
+    }
+
+    .hsb-sub {
+        font-size: .9rem;
+    }
+
+    .hsb-search {
+        max-width: 100%;
+        border-radius: 12px;
+    }
+
+    .hsb-search-btn {
+        padding: 10px 18px;
+        font-size: .83rem;
+    }
+
+    .hsb-tags {
+        gap: 6px;
+    }
+
+    /* ── Tabs section ── */
+    .tabs-section {
+        padding: 32px 16px 20px;
+    }
+
+    .tab-btn {
+        padding: 9px 14px;
+        font-size: .8rem;
+    }
+
+    .res-card {
+        flex: 0 0 calc(50% - 8px);
+    }
+
+    /* ── Stats strip ── */
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    /* ── Sections ── */
+    .section {
+        padding: 48px 18px;
+    }
+
+    .how-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+        padding: 52px 18px;
+    }
+
+    .cta-inner h2 {
+        font-size: 1.8rem;
+    }
+
+    /* ── Footer ── */
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+    }
+
+    .site-footer {
+        padding: 40px 18px 0;
+    }
+
+    /* ── Notes / Books layout — collapse sidebar ── */
+    .layout {
+        grid-template-columns: 1fr;
+        padding: 18px 16px 48px;
+    }
+
+    .sidebar {
+        position: static;
+        height: auto;
+    }
+
+    .sidebar-card {
+        margin-bottom: 12px;
+    }
+
+    /* ── Filter sections collapsed on tablet ── */
+    .filter-section h4:not(.open)+* {
+        display: none;
+    }
+
+    /* ── Page banner ── */
+    .page-banner {
+        padding: 28px 18px 24px;
+    }
+
+    .banner-title {
+        font-size: 1.3rem;
+    }
+
+    .banner-inner {
+        gap: 12px;
+    }
+
+    /* ── Search page ── */
+    .search-hero {
+        padding: 28px 18px 24px;
+    }
+
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    .big-search {
+        padding: 8px 8px 8px 14px;
+    }
+
+    .type-tabs {
+        gap: 6px;
+    }
+
+    .type-tab {
+        padding: 6px 12px;
+        font-size: .78rem;
+    }
+
+    /* ── Result cards ── */
+    .rc-icon-col {
+        width: 46px;
+    }
+
+    .rc-desc {
+        display: none;
+    }
+
+    /* ── Newspaper grid ── */
+    .np-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 16px;
+    }
+
+    /* ── Notif dropdown ── */
+    .notif-dropdown {
+        width: 300px;
+        right: -10px;
+    }
+}
+
+
+/* ============================================================
+   ≤ 768px  — Tablet portrait / large phone
+============================================================ */
+@media (max-width: 768px) {
+
+    /* ── Hero banner ── */
+    .hero-search-banner {
+        padding: 24px 16px 40px;
+    }
+
+    .hsb-eyebrow {
+        font-size: .65rem;
+        padding: 4px 12px;
+    }
+
+    .hsb-h1 {
+        font-size: 1.7rem;
+        margin-bottom: 10px;
+    }
+
+    .hsb-sub {
+        font-size: .86rem;
+        margin-bottom: 22px;
+    }
+
+    .hsb-search {
+        padding: 5px 5px 5px 14px;
+        border-radius: 11px;
+    }
+
+    .hsb-search-btn {
+        padding: 9px 14px;
+        font-size: .8rem;
+    }
+
+    .hsb-tags {
+        margin-top: 16px;
+    }
+
+    .hsb-tag {
+        font-size: .7rem;
+        padding: 5px 11px;
+    }
+
+    /* ── Tabs ── */
+    .tabs-section {
+        padding: 24px 14px 16px;
+    }
+
+    .tabs-header {
+        gap: 2px;
+        margin-bottom: 20px;
+    }
+
+    .tab-btn {
+        padding: 8px 11px;
+        font-size: .76rem;
+        gap: 5px;
+    }
+
+    .tab-btn .tab-badge {
+        display: none;
+    }
+
+    .res-type-switcher {
+        gap: 6px;
+    }
+
+    .rts-btn {
+        padding: 6px 12px;
+        font-size: .75rem;
+    }
+
+    .rts-label {
+        display: none;
+    }
+
+    /* ── Resource cards ── */
+    .res-card {
+        flex: 0 0 calc(50% - 8px);
+    }
+
+    /* ── Slider nav ── */
+    .slider-nav {
+        margin-top: 14px;
+    }
+
+    /* ── Stats strip ── */
+    .stats-strip {
+        padding: 28px 16px;
+    }
+
+    .stat-num {
+        font-size: 1.5rem;
+    }
+
+    .stat-lbl {
+        font-size: .74rem;
+    }
+
+    /* ── Sections ── */
+    .section {
+        padding: 40px 16px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .section-sub {
+        font-size: .87rem;
+    }
+
+    .center {
+        margin-bottom: 28px;
+    }
+
+    .how-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .cats-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .cat-card {
+        padding: 18px 16px;
+    }
+
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .why-card {
+        padding: 18px 16px;
+    }
+
+    /* ── Testimonials ── */
+    .t-card {
+        flex: 0 0 100%;
+        margin-right: 0;
+    }
+
+    .slider-btn {
+        display: none;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+        padding: 40px 16px;
+    }
+
+    .cta-inner h2 {
+        font-size: 1.5rem;
+    }
+
+    .cta-inner p {
+        font-size: .88rem;
+    }
+
+    .cta-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+
+    /* ── Footer ── */
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 6px;
+    }
+
+    /* ── Page banner ── */
+    .page-banner {
+        padding: 22px 16px 20px;
+    }
+
+    .banner-left {
+        gap: 12px;
+    }
+
+    .banner-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 1rem;
+    }
+
+    .banner-title {
+        font-size: 1.2rem;
+    }
+
+    .banner-sub {
+        font-size: .78rem;
+    }
+
+    .banner-stat {
+        padding: 7px 14px;
+        font-size: .78rem;
+    }
+
+    /* ── Search bar (listing pages) ── */
+    .search-bar-wrap {
+        padding: 14px 16px 0;
+    }
+
+    .search-bar {
+        padding: 9px 14px;
+    }
+
+    .search-bar input {
+        font-size: .85rem;
+    }
+
+    /* ── Results header ── */
+    .results-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+
+    .sort-select,
+    .sort-sel {
+        width: 100%;
+    }
+
+    /* ── Notes grid ── */
+    .notes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 14px;
+    }
+
+    /* ── Books grid ── */
+    .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 14px;
+    }
+
+    .book-cover {
+        height: 140px;
+    }
+
+    /* ── Newspaper grid ── */
+    .np-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 14px;
+    }
+
+    .np-thumb {
+        height: 160px;
+    }
+
+    /* ── Search page hero ── */
+    .search-hero {
+        padding: 22px 16px 20px;
+    }
+
+    .hero-title {
+        font-size: 1.3rem;
+    }
+
+    .hero-sub {
+        font-size: .8rem;
+    }
+
+    .big-search {
+        border-radius: 11px;
+    }
+
+    .btn-search {
+        padding: 9px 16px;
+        font-size: .83rem;
+    }
+
+    .type-tabs {
+        margin-top: 14px;
+        gap: 5px;
+    }
+
+    .type-tab {
+        padding: 5px 10px;
+        font-size: .74rem;
+    }
+
+    .type-tab .tc {
+        display: none;
+    }
+
+    /* ── Result cards (horizontal) ── */
+    .rc {
+        border-radius: 11px;
+    }
+
+    .rc-actions {
+        flex-direction: row;
+        padding: 0 10px;
+        border-left: none;
+        border-top: 1px solid var(--border);
+        background: var(--page-bg);
+        align-items: center;
+        justify-content: flex-end;
+        gap: 6px;
+    }
+
+    .rc {
+        flex-direction: column;
+    }
+
+    .rc-icon-col {
+        display: none;
+    }
+
+    .rc-strip {
+        width: 100%;
+        height: 4px;
+    }
+
+    .rc-body {
+        padding: 12px 14px 8px;
+    }
+
+    /* ── Pagination ── */
+    .pagination {
+        gap: 4px;
+        margin-top: 24px;
+    }
+
+    .pag-btn {
+        min-width: 32px;
+        height: 32px;
+        font-size: .78rem;
+        border-radius: 7px;
+    }
+
+    /* ── Stat strip (search page) ── */
+    .stat-strip {
+        gap: 7px;
+    }
+
+    .stat-pill {
+        padding: 6px 10px;
+        font-size: .73rem;
+    }
+
+    /* ── Upload modal ── */
+    .upload-modal-inner {
+        width: calc(100vw - 32px);
+        padding: 22px 18px;
+    }
+}
+
+
+/* ============================================================
+   ≤ 480px  — Mobile portrait
+============================================================ */
+@media (max-width: 480px) {
+
+    /* ── Header ── */
+    .site-header {
+        padding: 0 12px;
+        gap: 8px;
+        height: 56px;
+    }
+
+    .btn-upload .btn-upload-text,
+    .hdr-logo-text {
+        display: none;
+    }
+
+    .btn-upload {
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        border-radius: 9px;
+        justify-content: center;
+    }
+
+    .btn-upload i {
+        margin: 0;
+    }
+
+    .hdr-logo-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 7px;
+    }
+
+    .icon-btn {
+        width: 32px;
+        height: 32px;
+        font-size: .82rem;
+    }
+
+    .hdr-avatar {
+        width: 32px;
+        height: 32px;
+    }
+
+    .btn-login {
+        padding: 6px 12px;
+        font-size: .78rem;
+    }
+
+    /* ── Notif dropdown ── */
+    .notif-dropdown {
+        width: calc(100vw - 24px);
+        right: -46px;
+        border-radius: 14px;
+    }
+
+    /* ── Hero banner ── */
+    .hero-search-banner {
+        padding: 20px 14px 36px;
+    }
+
+    .hsb-eyebrow {
+        margin-bottom: 14px;
+    }
+
+    .hsb-h1 {
+        font-size: 1.45rem;
+        letter-spacing: -.01em;
+        line-height: 1.35;
+    }
+
+    .hsb-sub {
+        font-size: .82rem;
+        margin-bottom: 18px;
+    }
+
+    .hsb-search {
+        padding: 5px 5px 5px 12px;
+        border-radius: 10px;
+        flex-wrap: nowrap;
+    }
+
+    .hsb-search i {
+        display: none;
+    }
+
+    .hsb-search input {
+        font-size: .86rem;
+    }
+
+    .hsb-search-btn {
+        padding: 9px 12px;
+        font-size: .76rem;
+        border-radius: 8px;
+    }
+
+    .hsb-tags {
+        margin-top: 12px;
+        gap: 5px;
+    }
+
+    .hsb-tag {
+        font-size: .67rem;
+        padding: 4px 10px;
+    }
+
+    /* ── Tabs section ── */
+    .tabs-section {
+        padding: 20px 12px 14px;
+    }
+
+    .tab-btn {
+        padding: 7px 9px;
+        font-size: .72rem;
+    }
+
+    .tab-btn i {
+        display: none;
+    }
+
+    .res-type-switcher {
+        gap: 5px;
+        margin-bottom: 16px;
+    }
+
+    .rts-btn {
+        padding: 5px 10px;
+        font-size: .72rem;
+    }
+
+    .rts-btn i {
+        font-size: .7rem;
+    }
+
+    /* ── Resource cards — full width on mobile ── */
+    .res-card {
+        flex: 0 0 85%;
+    }
+
+    /* ── Slider arrows ── */
+    .sarr {
+        width: 28px;
+        height: 28px;
+        font-size: .72rem;
+    }
+
+    /* ── Stats strip ── */
+    .stats-strip {
+        padding: 22px 14px;
+    }
+
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .stat-num {
+        font-size: 1.35rem;
+    }
+
+    /* ── Sections ── */
+    .section {
+        padding: 32px 14px;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .section-eyebrow {
+        font-size: .64rem;
+        padding: 4px 11px;
+    }
+
+    .how-card {
+        padding: 20px 16px;
+    }
+
+    .how-icon {
+        width: 40px;
+        height: 40px;
+        font-size: .95rem;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .why-card {
+        padding: 16px 14px;
+    }
+
+    .why-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+        padding: 32px 14px;
+    }
+
+    .cta-inner h2 {
+        font-size: 1.3rem;
+    }
+
+    /* ── Footer ── */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .site-footer {
+        padding: 32px 14px 0;
+    }
+
+    .footer-socials {
+        gap: 6px;
+    }
+
+    /* ── Page banner ── */
+    .page-banner {
+        padding: 18px 14px 16px;
+    }
+
+    .banner-left {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .banner-title {
+        font-size: 1.1rem;
+    }
+
+    .banner-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .banner-stat {
+        padding: 6px 12px;
+        font-size: .74rem;
+        border-radius: 9px;
+    }
+
+    /* ── Search bar (listing pages) ── */
+    .search-bar-wrap {
+        padding: 12px 14px 0;
+    }
+
+    .search-bar {
+        padding: 8px 12px;
+        border-radius: 10px;
+    }
+
+    .search-bar input {
+        font-size: .82rem;
+    }
+
+    /* ── Layout / sidebar ── */
+    .layout {
+        padding: 14px 12px 40px;
+        gap: 16px;
+    }
+
+    .sidebar-card {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .sidebar-title h3 {
+        font-size: .82rem;
+    }
+
+    /* ── Filter options ── */
+    .filter-opt {
+        font-size: .79rem;
+        padding: 5px 0;
+    }
+
+    .fc {
+        font-size: .62rem;
+        padding: 1px 6px;
+    }
+
+    /* ── Results header ── */
+    .results-head {
+        margin-bottom: 12px;
+    }
+
+    .results-count {
+        font-size: .78rem;
+    }
+
+    /* ── Notes grid ── */
+    .notes-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .note-body {
+        padding: 12px;
+        gap: 6px;
+    }
+
+    .note-title {
+        font-size: .86rem;
+    }
+
+    .note-desc {
+        display: none;
+    }
+
+    .note-footer {
+        padding: 8px 12px;
+    }
+
+    /* ── Books grid ── */
+    .books-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .book-cover {
+        height: 120px;
+    }
+
+    .book-body {
+        padding: 12px;
+        gap: 6px;
+    }
+
+    .book-title {
+        font-size: .86rem;
+    }
+
+    .book-desc {
+        display: none;
+    }
+
+    .book-footer {
+        padding: 8px 12px;
+    }
+
+    /* ── Newspaper grid ── */
+    .np-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .np-thumb {
+        height: 130px;
+    }
+
+    .np-body {
+        padding: 12px;
+        gap: 5px;
+    }
+
+    .np-title {
+        font-size: .86rem;
+    }
+
+    .np-publisher,
+    .np-date {
+        font-size: .7rem;
+    }
+
+    .np-footer {
+        padding: 8px 12px;
+    }
+
+    /* ── Search page ── */
+    .search-hero {
+        padding: 18px 14px 16px;
+    }
+
+    .hero-label {
+        font-size: .64rem;
+        padding: 4px 11px;
+        margin-bottom: 12px;
+    }
+
+    .hero-title {
+        font-size: 1.2rem;
+    }
+
+    .big-search {
+        padding: 7px 7px 7px 12px;
+        border-radius: 10px;
+    }
+
+    .big-search i {
+        display: none;
+    }
+
+    .big-search input {
+        font-size: .88rem;
+    }
+
+    .btn-search {
+        padding: 8px 13px;
+        font-size: .78rem;
+        border-radius: 8px;
+    }
+
+    .type-tabs {
+        gap: 4px;
+        margin-top: 12px;
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+    }
+
+    .type-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .type-tab {
+        padding: 5px 10px;
+        font-size: .72rem;
+        flex-shrink: 0;
+    }
+
+    /* ── Result cards (horizontal → stacked) ── */
+    .rc-body {
+        padding: 10px 12px 6px;
+    }
+
+    .rc-title {
+        font-size: .88rem;
+    }
+
+    .rc-meta {
+        gap: 8px;
+    }
+
+    .rcm {
+        font-size: .68rem;
+    }
+
+    .rc-actions {
+        padding: 8px 12px;
+    }
+
+    .btn-view {
+        padding: 6px 12px;
+        font-size: .7rem;
+    }
+
+    /* ── Stat strip (search page) ── */
+    .stat-strip {
+        gap: 5px;
+    }
+
+    .stat-pill {
+        padding: 5px 9px;
+        font-size: .7rem;
+    }
+
+    /* ── Empty / zero states ── */
+    .empty-state,
+    .no-results,
+    .zero-state {
+        padding: 40px 16px;
+    }
+
+    .empty-icon,
+    .no-results-icon {
+        width: 58px;
+        height: 58px;
+        font-size: 1.3rem;
+        border-radius: 14px;
+    }
+
+    .zero-state-icon {
+        width: 64px;
+        height: 64px;
+        font-size: 1.6rem;
+        border-radius: 16px;
+    }
+
+    .zero-state h2,
+    .no-results h3 {
+        font-size: 1rem;
+    }
+
+    .sug-pill {
+        padding: 5px 12px;
+        font-size: .74rem;
+    }
+
+    /* ── Pagination ── */
+    .pagination {
+        gap: 3px;
+        margin-top: 20px;
+    }
+
+    .pag-btn {
+        min-width: 30px;
+        height: 30px;
+        font-size: .74rem;
+        border-radius: 6px;
+    }
+
+    /* ── Upload modal ── */
+    .upload-modal-inner {
+        width: calc(100vw - 24px);
+        padding: 18px 14px;
+        border-radius: 14px;
+    }
+
+    .upload-opt {
+        padding: 11px 12px;
+        gap: 10px;
+    }
+
+    .upload-opt-icon {
+        width: 32px;
+        height: 32px;
+        font-size: .82rem;
+    }
+
+    .upload-opt-label {
+        font-size: .82rem;
+    }
+}
